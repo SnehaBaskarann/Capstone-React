@@ -39,3 +39,10 @@
 .navbar {
   background-color: #27235c;
 }
+
+#QuizCard{
+  width:1000px;
+  margin-left:25%;
+  margin-top:3%;
+  background-color: antiquewhite;
+}
