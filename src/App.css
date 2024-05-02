@@ -44,14 +44,8 @@
   width:1000px;
   margin-left:25%;
   margin-top:3%;
-  background-color:rgb(243, 238, 238);
-}
-
-#uploadbox{
-  width:50%;
-  height:150px;
-  margin-left:20%;
-  margin-top:5%;
+  background-color:rgb(241, 237, 237);
+  
 }
 
 #dropzone{
@@ -60,9 +54,10 @@
   justify-content:center;
   align-items:center;
   height:300px;
-  width:700px;
-  margin-left:30%;
-  margin-top:5%;
+  width:50%;
+  margin-left:25%;
+  margin-top:15%;
   border:2px dashed rgb(117,112,112);
   padding:20px;
 }
+

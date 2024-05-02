@@ -1,22 +1,22 @@
 import React, { useRef, useState } from 'react';
 import { FaCloudUploadAlt } from "react-icons/fa";
 import '../App.css'
-
+ 
 const UploadBulkQuiz = ()=>{
     const[files , setFiles]=useState(undefined);
     const inputref = useRef();
-
+ 
     const handleDragOver = (event)=>{
         event.preventDefault();
     };
-
+ 
     const handleDrop = (event)=>{
         event.preventDefault();
         setFiles(event.dataTransfer.files)
     };
-
+ 
     // const handleUpload =()=>{};
-
+ 
     // if(files)return (
     //     <div className="uploads">
     //     <ul>
@@ -28,8 +28,8 @@ const UploadBulkQuiz = ()=>{
     //     </div> */}
     //     </div>
     // )
-
-
+ 
+ 
   return (
     <>
    
@@ -37,13 +37,13 @@ const UploadBulkQuiz = ()=>{
         onDragOver={handleDragOver}
         onDrop={handleDrop}
         >
-            <FaCloudUploadAlt style={{fontSize:"300%"}}/>
+            <FaCloudUploadAlt  style={{fontSize:"50px"}}/>
             <h4>Drag and Drop Files to Upload</h4>
             <h4>Or</h4>
             <input type='file' multiple onChange={(event)=>setFiles(event.target.files)} hidden ref={inputref}/>
             <button onClick={(e)=> {e.preventDefault();inputref.current.click()}}>Browse Files</button>
         </div>
-    
+   
      {files ?<>
             <div >
         <ul>
@@ -56,12 +56,11 @@ const UploadBulkQuiz = ()=>{
         </div></>:<>
         </>
     }
-    
-    
+   
+   
     </>
   )
 };
-
+ 
 export default UploadBulkQuiz
-
-
+ 
