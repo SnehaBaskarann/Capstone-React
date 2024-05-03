@@ -8,27 +8,29 @@ export default function Home() {
         setShowOptions(!showOptions);
         event.target.nextSibling.style.display = showOptions ? 'none' : 'block';
     };
-    
+
     return (
         <div>
             <Navbar />
+            <div class="card" id="QuizCard">
+                <div class="card-body">
             <div className="d-flex mt-4">
                 <div className="container">
                     <div className="d-flex mt-3">
                         <h6>Quiz Title : </h6>
-                        <input type="text" style={{ width: 100, marginLeft: 10 }} />
+                        <input type="text" style={{ width: 110, marginLeft: 10 , borderRadius:15}} />
                     </div>
                     <div className="d-flex mt-3">
                         <h6>Time Limit: </h6>
-                        <input type="number" style={{ width: 50 }} />
+                        <input type="number" style={{ width: 100, marginLeft:10 , borderRadius:15 }} />
                     </div>
                     <div className="d-flex mt-3">
                         <h6>Attempts Allowed: </h6>
-                        <input type="number" style={{ width: 50 }} />
+                        <input type="number" style={{ width: 100, marginLeft:10 , borderRadius:15 }} />
                     </div>
                     <div className="d-flex mt-3">
                         <h6>Maximum Grade: </h6>
-                        <input type="number" style={{ width: 50 }} />
+                        <input type="number" style={{width: 100, marginLeft:10 , borderRadius:15 }} />
                     </div>
                 </div>
                 <div className="container text-end">
@@ -37,19 +39,21 @@ export default function Home() {
                         <input type="number" style={{ width: 50 }} />
                     </div> */}
                     <div style={{ position: 'relative' }}>
-                    <button className="btn btn-primary" onClick={toggleOptions}>
-                        Add &#9662; 
-                    </button>
-                    <div style={{ display: 'none', position: 'absolute', right: 0, zIndex: 1 }}>
-                        <button className="btn btn-outline-primary d-block text-start">
-                            + Add Question Bank
+                        <button className="btn btn-primary" onClick={toggleOptions}>
+                            Add &#9662;
                         </button>
-                        <button className="btn btn-outline-primary d-block text-start">
-                            + Add New Question
-                        </button>
+                        <div style={{ display: 'none', position: 'absolute', right: 0, zIndex: 1 }}>
+                            <button className="btn btn-outline-primary d-block text-start">
+                                + Add Question Bank
+                            </button>
+                            <button className="btn btn-outline-primary d-block text-start">
+                                + Add New Question
+                            </button>
+                        </div>
                     </div>
-                </div>
-               
+                    </div>
+            </div>
+
                 </div>
             </div>
         </div>
