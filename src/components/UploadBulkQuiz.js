@@ -4,6 +4,8 @@ import '../App.css'
  
 const UploadBulkQuiz = ()=>{
     const[files , setFiles]=useState(undefined);
+    
+    
     const inputref = useRef();
  
     const handleDragOver = (event)=>{
@@ -14,22 +16,9 @@ const UploadBulkQuiz = ()=>{
         event.preventDefault();
         setFiles(event.dataTransfer.files)
     };
- 
-    // const handleUpload =()=>{};
- 
-    // if(files)return (
-    //     <div className="uploads">
-    //     <ul>
-    //         {Array.from(files).map((file,idx)=><li key={idx}>{file.name}</li>)}
-    //     </ul>
-    //     {/* <div className='actions'>
-    //     <button onClick={()=>setFiles(null)}>Cancel</button>
-    //     <button onClick={handleUpload}>Upload</button>
-    //     </div> */}
-    //     </div>
-    // )
- 
- 
+
+   
+
   return (
     <>
    
@@ -49,13 +38,11 @@ const UploadBulkQuiz = ()=>{
         <ul>
             {Array.from(files).map((file,idx)=><li key={idx}>{file.name}</li>)}
         </ul>
-        {/* <div className='actions'>
-        <button onClick={()=>setFiles(null)}>Cancel</button>
-        <button onClick={handleUpload}>Upload</button>
-        </div> */}
+        
         </div></>:<>
         </>
     }
+    
    
    
     </>
