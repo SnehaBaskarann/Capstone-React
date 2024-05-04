@@ -57,8 +57,20 @@
   height:300px;
   width:70%;
   margin-left:15%;
-  margin-top:10%;
+  margin-top:3%;
   border:2px dashed rgb(117,112,112);
   padding:20px;
 }
 
+#bulklink,#newquelink{
+  text-decoration: none;
+  color:grey;
+}
+
+#questitle{
+  color:grey;
+}
+
+#required{
+  color:Red;
+}

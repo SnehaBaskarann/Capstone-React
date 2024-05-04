@@ -1,5 +1,9 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { ImFolderUpload } from "react-icons/im";
+import { BiSolidCoinStack } from "react-icons/bi";
+import { Link } from 'react-router-dom';
+import UploadBulkQuiz from '../components/UploadBulkQuiz';
 
 
 function StaticExample() {
@@ -14,16 +18,16 @@ function StaticExample() {
         </Modal.Header>
 
         <Modal.Body>
-          <p>Add Question from Bulk Upload</p>
+          <h6><BiSolidCoinStack style={{fontSize:"30" ,color:"GrayText" , marginBottom:"11" , marginLeft:"10"}}/><Link id='bulklink' to='/bulkquiz'> Add Question from Bulk Upload</Link></h6>
         </Modal.Body>
         <Modal.Body>
-          <p>Add New Question</p>
+          <h6><ImFolderUpload style={{fontSize:"20" , color:"GrayText" , marginBottom:"10" , marginLeft:"11"}}/><Link id='newquelink'>  Add New Question</Link></h6>
         </Modal.Body>
 
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <Button variant="secondary">Close</Button>
           <Button variant="primary">Save changes</Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal.Dialog>
     </div>
   );
