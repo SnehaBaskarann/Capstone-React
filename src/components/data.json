@@ -1,0 +1,63 @@
+[
+    {
+      "id": 1,
+      "text": "What is the capital of France?",
+      "options": [
+        { "id": "a", "text": "Paris" },
+        { "id": "b", "text": "London" },
+        { "id": "c", "text": "Berlin" },
+        { "id": "d", "text": "None of the Above" }
+      ],
+      "correctAnswer": "a",
+      "isEditing": false
+    },
+    {
+      "id": 2,
+      "text": "Who wrote \"To Kill a Mockingbird\"?",
+      "options": [
+        { "id": "a", "text": "Harper Lee" },
+        { "id": "b", "text": "George Orwell" },
+        { "id": "c", "text": "Mark Twain" },
+        { "id": "d", "text": "None of these options" }
+      ],
+      "correctAnswer": "a",
+      "isEditing": false
+    },
+    {
+      "id": 3,
+      "text": "What is the largest ocean in the world?",
+      "options": [
+        { "id": "a", "text": "Atlantic Ocean" },
+        { "id": "b", "text": "Indian Ocean" },
+        { "id": "c", "text": "Arctic Ocean" },
+        { "id": "d", "text": "Pacific Ocean" }
+      ],
+      "correctAnswer": "d",
+      "isEditing": false
+    },
+    {
+      "id": 4,
+      "text": "Who painted the Mona Lisa?",
+      "options": [
+        { "id": "a", "text": "Leonardo da Vinci" },
+        { "id": "b", "text": "Vincent van Gogh" },
+        { "id": "c", "text": "Pablo Picasso" },
+        { "id": "d", "text": "Michelangelo" }
+      ],
+      "correctAnswer": "a",
+      "isEditing": false
+    },
+    {
+      "id": 5,
+      "text": "What is the chemical symbol for water?",
+      "options": [
+        { "id": "a", "text": "O2" },
+        { "id": "b", "text": "CO2" },
+        { "id": "c", "text": "H2O" },
+        { "id": "d", "text": "NaCl" }
+      ],
+      "correctAnswer": "c",
+      "isEditing": false
+    }
+  ]
+  

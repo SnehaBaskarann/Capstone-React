@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Home from '../Home';
+import Navbar from '../Navbar';
+// import Home from '../Home';
 
 const QuizManager = () => {
   const [quizTitle, setQuizTitle] = useState('');
@@ -84,7 +85,8 @@ const QuizManager = () => {
 
   return (
     <div>
-      <Home />
+      {/* <Home /> */}
+      <Navbar/>
       <div className="quiz-manager container mt-5">
         <form onSubmit={handleSubmit}>
           {/* <div className="mb-3">
@@ -161,18 +163,20 @@ const QuizManager = () => {
             </div>
           ))}
           <button
-            className="btn btn-outline-primary mt-3 "
+            className="btn btn-outline-primary mt-3"
             type="button"
             onClick={addQuestion}
           >
             Add Question
           </button>
+          <br/>
           <button
             className="btn btn-success mt-3"
             type="submit"
           >
             Save Changes
           </button>
+          <br/>
           <button
             className="btn btn-primary mt-3"
             type="submit"
