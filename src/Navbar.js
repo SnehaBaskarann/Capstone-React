@@ -29,85 +29,85 @@
 //     )
 // }
 
-import React, { useState } from 'react'
-import Relevantz from './images/Relevantz.png'
-import { FaBars, FaBookOpenReader } from "react-icons/fa6";
-import { FaSearch, FaUserGraduate, FaHome, FaChartBar } from "react-icons/fa";
-import {BootstrapNavbar } from 'react-bootstrap';
-import Navbar from './Navbar.css'
+// import React, { useState } from 'react'
+// import Relevantz from './images/Relevantz.png'
+// import { FaBars, FaBookOpenReader } from "react-icons/fa6";
+// import { FaSearch, FaUserGraduate, FaHome, FaChartBar } from "react-icons/fa";
+// import {BootstrapNavbar } from 'react-bootstrap';
+// // import Navbar from './Navbar.css'
 
-export default function Navbar(){
-const [showReportDropdown, setShowReportDropdown] = useState(false);
-  const handlePageChange = (page) => {
-    setActivePage(page);
-    if (!showSideNav) {
-      setShowSideNav(true);
-    }
-    if (page === 'reports') {
-      setShowReportDropdown(!showReportDropdown);
-    }
-    if (showReportDropdown) setShowReportDropdown(!showReportDropdown);
-  };
-  const handleChange = e => {
-    setSearchTerm(e.target.value);
-  };
-  const toggleSideNav = () => {
-    setShowSideNav(!showSideNav);
-  }; 
+// export default function Navbar(){
+// const [showReportDropdown, setShowReportDropdown] = useState(false);
+//   const handlePageChange = (page) => {
+//     setActivePage(page);
+//     if (!showSideNav) {
+//       setShowSideNav(true);
+//     }
+//     if (page === 'reports') {
+//       setShowReportDropdown(!showReportDropdown);
+//     }
+//     if (showReportDropdown) setShowReportDropdown(!showReportDropdown);
+//   };
+//   const handleChange = e => {
+//     setSearchTerm(e.target.value);
+//   };
+//   const toggleSideNav = () => {
+//     setShowSideNav(!showSideNav);
+//   }; 
 
-return(
-    <div className="dashboard">
-    <div className='top-nav'>
-      <button className="menu-btn" onClick={toggleSideNav}>
-        <FaBars />
-      </button>
-      <div className='nav-img'>
-        <Image src={Relevantz} fluid />
-      </div>
+// return(
+//     <div className="dashboard">
+//     <div className='top-nav'>
+//       <button className="menu-btn" onClick={toggleSideNav}>
+//         <FaBars />
+//       </button>
+//       <div className='nav-img'>
+//         <Image src={Relevantz} fluid />
+//       </div>
 
-      <div className="user-info">
-        <FaSearch className='search-icon' />
-        <input
-          onChange={handleChange}
-          type="search"
-          placeholder="Search..."
-          value={searchTerm}
-          className='search-box'
-        />
+//       <div className="user-info">
+//         <FaSearch className='search-icon' />
+//         <input
+//           onChange={handleChange}
+//           type="search"
+//           placeholder="Search..."
+//           value={searchTerm}
+//           className='search-box'
+//         />
 
-      </div>
+//       </div>
 
-    </div>
-    <div className={`side-nav ${showSideNav ? 'open' : ''}`}>
-      <ul>
-        <li className={activePage === 'home' ? 'active' : ''} onClick={() => handlePageChange('home')}>
-          <FaHome className='icon' /> {/* Icon for Home */}
-          {showSideNav && <span>Home</span>}
-        </li>
-        <li className={activePage === 'course' ? 'active' : ''} onClick={() => handlePageChange('course')}>
-          <FaBookOpenReader className='icon' /> {/* Icon for Submit Request */}
-          {showSideNav && <span>Course</span>}
-        </li>
-        <li
-          className={activePage === 'learner' ? 'active' : ''}
-          onClick={() => handlePageChange('learner')}
-        >
-          <FaUserGraduate className='icon' /> {/* Icon for Tracking */}
-          {showSideNav && <span>Learner</span>}
-        </li>
-        <li className='reports' onClick={() => handlePageChange('reports')}>
-          <FaChartBar className='icon' />
-          {showSideNav && <span>Reports</span>}
+//     </div>
+//     <div className={`side-nav ${showSideNav ? 'open' : ''}`}>
+//       <ul>
+//         <li className={activePage === 'home' ? 'active' : ''} onClick={() => handlePageChange('home')}>
+//           <FaHome className='icon' /> {/* Icon for Home */}
+//           {showSideNav && <span>Home</span>}
+//         </li>
+//         <li className={activePage === 'course' ? 'active' : ''} onClick={() => handlePageChange('course')}>
+//           <FaBookOpenReader className='icon' /> {/* Icon for Submit Request */}
+//           {showSideNav && <span>Course</span>}
+//         </li>
+//         <li
+//           className={activePage === 'learner' ? 'active' : ''}
+//           onClick={() => handlePageChange('learner')}
+//         >
+//           <FaUserGraduate className='icon' /> {/* Icon for Tracking */}
+//           {showSideNav && <span>Learner</span>}
+//         </li>
+//         <li className='reports' onClick={() => handlePageChange('reports')}>
+//           <FaChartBar className='icon' />
+//           {showSideNav && <span>Reports</span>}
 
 
-        </li>
-      </ul>
-      <ul className={`submenu ${showReportDropdown ? 'open' : ''}`}>
-        <li onClick={() => setActivePage('learnerreport')}> Learner Report</li>
-        <li onClick={() => setActivePage('coursereport')}>Course Report</li>
-        <li onClick={() => setActivePage('enroll')}>Enrollment Report</li>
-        <li onClick={() => setActivePage('quiz')}>Quiz Report</li>
-      </ul>
-    </div>
-    </div>
-)}
+//         </li>
+//       </ul>
+//       <ul className={`submenu ${showReportDropdown ? 'open' : ''}`}>
+//         <li onClick={() => setActivePage('learnerreport')}> Learner Report</li>
+//         <li onClick={() => setActivePage('coursereport')}>Course Report</li>
+//         <li onClick={() => setActivePage('enroll')}>Enrollment Report</li>
+//         <li onClick={() => setActivePage('quiz')}>Quiz Report</li>
+//       </ul>
+//     </div>
+//     </div>
+// )}
