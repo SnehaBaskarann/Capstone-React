@@ -64,7 +64,7 @@ function AdminNavbar() {
 
                     <li onClick={() => handlePageChange()}>
                         <IoMdAddCircle  className='icon' fontSize="30"/> {/* Icon for Home */}
-                        {showSideNav && <Link to='./bulkquiz' style={{color:"white" , textDecoration:"none"}}><span>Adding New Question</span></Link>}
+                        {showSideNav && <Link to='./quizeditor' style={{color:"white" , textDecoration:"none"}}><span>Adding New Question</span></Link>}
                     </li>
 
                 </ul>
