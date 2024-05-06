@@ -6,6 +6,7 @@ import QuizEditor from './components/PreviewQuiz';
 import QuizManager from './components/QuizManager';
 import CombineQuizEditor from './components/CombineQuizEditor';
 import FetchApi from './components/FetchApi';
+import EditQuiz from './components/EditQuiz';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="quizManager" element={<QuizManager/>} />
         <Route path="combineQuizEditor" element={<CombineQuizEditor/>} />
         <Route path="fetchApi" element={<FetchApi/>} />
+        <Route path="editQuiz" element={<EditQuiz/>} />
         {/* <Route path="/quizengine" element={<QuizEngine/>}/>
         <Route path="/addquestion" element={<AdminAddQuestions/>}/> */}
       </Routes>
