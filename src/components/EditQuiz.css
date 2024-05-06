@@ -1,0 +1,8 @@
+.edit-quiz-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    max-width: 150vw;
+  }
+  
