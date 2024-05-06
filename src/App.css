@@ -36,15 +36,15 @@
     transform: rotate(360deg);
   }
 } */
-.navbar {
+.Navbar {
   background-color: #27235c;
 }
 
 #QuizCard{
   width:900px;
   /* height:430px; */
-  margin-left:27%;
-  margin-top:2%;
+  margin-left:25%;
+  margin-top:-45%;
   background-color:rgb(237, 231, 231);
   
 }
@@ -57,7 +57,7 @@
   height:300px;
   width:70%;
   margin-left:15%;
-  margin-top:3%;
+  margin-top:2%;
   border:2px dashed rgb(117,112,112);
   padding:20px;
 }

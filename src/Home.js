@@ -110,7 +110,6 @@
 // }
 
 import React, { useState } from 'react';
-import Navbar from "./Navbar";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { ImFolderUpload } from "react-icons/im";
@@ -118,6 +117,9 @@ import { BiSolidCoinStack } from "react-icons/bi";
 import { BiSolidPencil } from "react-icons/bi";
 import { FaTrashCan } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import AdminNavbar from './AdminNavbar';
+
+
 
 
 
@@ -130,6 +132,8 @@ export default function Home() {
     const [grade, setGrade] = useState('');
     const [attempts, setAttempts] = useState('');
     const [numQuestions, setNumQuestions] = useState('');
+    const [error, setError] = useState('');
+    
 
     const toggleOptions = (event) => {
         event.preventDefault();
@@ -153,10 +157,22 @@ export default function Home() {
         return quizTitle !== '' && duration !== '' && grade !== '';
     };
 
+    const handleQuizTitleChange = (e) => {
+        const value = e.target.value;
+        if (/^\d+$/.test(value)) {
+            setError('*Please enter only text ');
+        } else {
+            setError('');
+            setQuizTitle(value);
+        }
+        
+    };
+   
+
     return (
-        <div>
-            <Navbar />
-            <form>
+        <div >
+     <AdminNavbar/>
+            <form className=' main-content'>
                 <div className="card" id="QuizCard">
                     <div className="card-body">
                         <div className="d-flex mt-2">
@@ -167,7 +183,8 @@ export default function Home() {
                                 <div className="form-group row mt-3">
                                     <label htmlFor="lbl1" className="col-sm-3 col-form-label" style={{ fontWeight: "bold" }} >Quiz Title<span id='required'>*</span></label>
                                     <div className="col-sm-8">
-                                        <input type="text" className="form-control" id="lbl1" placeholder="Enter the Quiz Title" style={{ borderRadius: 8 }} onChange={(e) => setQuizTitle(e.target.value)} />
+                                        <input type="text" className="form-control" id="lbl1" placeholder="Enter the Quiz Title" style={{ borderRadius: 8 }} onChange={handleQuizTitleChange}/>
+                                         {error && <p style={{ color: 'red' , fontSize:"50" }}>{error}</p>} 
                                     </div>
                                 </div>
 
@@ -184,14 +201,14 @@ export default function Home() {
                                <div class="form-group row mt-3">
                                      <label for="lbl5" class="col-sm-3 col-form-label" style={{ fontWeight: "bold" }}>Grade to be Secured<span id='required'>*</span></label>
                                      <div class="col-sm-8">
-                                         <input type="number" class="form-control" id="lbl5" placeholder="Enter the Maximum Score to be Passed" style={{ borderRadius: 8 }} onChange={(e) => setGrade(e.target.value)}></input>
+                                         <input type="number" class="form-control" id="lbl5" placeholder="Enter the Minimum Score to be Passed" style={{ borderRadius: 8 }} onChange={(e) => setGrade(e.target.value)}></input>
                                      </div>
                                 </div>
 
                                  <div class="form-group row mt-3">
                                      <label for="lbl4" class="col-sm-3 col-form-label" style={{ fontWeight: "bold" }}>Attempts Allowed<span id='required'>*</span></label>
                                      <div class="col-sm-8">
-                                         <label type="number" class="form-control" id="lbl4" placeholder="Enter the Number of Attempts" style={{ borderRadius: 8 , width:550, height:40}} onChange={(e) => setAttempts(e.target.value)}>3 Attempts</label>
+                                         <label type="number" class="form-control" id="lbl4" placeholder="Enter the Number of Attempts" style={{ borderRadius: 8 , width:553, height:40}} onChange={(e) => setAttempts(e.target.value)}>3 Attempts</label>
                                      </div>
                                 </div>
 

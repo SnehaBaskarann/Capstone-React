@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { FaCloudUploadAlt } from "react-icons/fa";
-import Navbar from "../Navbar";
+
 import { Link } from 'react-router-dom';
 import '../App.css'
+import AdminNavbar from '../AdminNavbar';
  
 const UploadBulkQuiz = ()=>{
     const[files , setFiles]=useState(undefined);
@@ -23,9 +24,9 @@ const UploadBulkQuiz = ()=>{
 
   return (
     <>
-        <Navbar />
+      <AdminNavbar />
         
-        <h5 style={{marginTop:"5%" , marginLeft:"42%"}}>Upload Question from device </h5>
+        <h5 style={{marginTop:"-40%" , marginLeft:"42%"}}>Upload Question from device </h5>
         <div id='dropzone'
         onDragOver={handleDragOver}
         onDrop={handleDrop}
