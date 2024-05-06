@@ -86,7 +86,7 @@ const QuizManager = () => {
   return (
     <div>
       {/* <Home /> */}
-      <Navbar/>
+      {/* <Navbar/> */}
       <div className="quiz-manager container mt-5">
         <form onSubmit={handleSubmit}>
           {/* <div className="mb-3">

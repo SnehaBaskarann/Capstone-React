@@ -58,7 +58,7 @@ const QuizEditor = () => {
 
   return (
     <div>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Container>
         {questions.map((question, index) => (
           <Card className="mb-3" key={question.id}>
