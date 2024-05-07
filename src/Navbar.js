@@ -29,12 +29,12 @@
 //     )
 // }
 
-import React, { useState } from 'react'
-import Relevantz from './images/Relevantz.png'
-import { FaBars, FaBookOpenReader } from "react-icons/fa6";
-import { FaSearch, FaUserGraduate, FaHome, FaChartBar } from "react-icons/fa";
-import {BootstrapNavbar } from 'react-bootstrap';
-import './Navbar.css'
+// import React, { useState } from 'react'
+// import Relevantz from './images/Relevantz.png'
+// import { FaBars, FaBookOpenReader } from "react-icons/fa6";
+// import { FaSearch, FaUserGraduate, FaHome, FaChartBar } from "react-icons/fa";
+// import {BootstrapNavbar } from 'react-bootstrap';
+// import './Navbar.css'
 
 // export default function Navbar(){
 // const [showReportDropdown, setShowReportDropdown] = useState(false);

@@ -26,7 +26,7 @@ const UploadBulkQuiz = ()=>{
     <>
       <AdminNavbar />
         
-        <h5 style={{marginTop:"-40%" , marginLeft:"42%"}}>Upload Question from device </h5>
+        <h5 style={{marginTop:"-40%" , marginLeft:"15%"}}>Upload Question from device </h5>
         <div id='dropzone'
         onDragOver={handleDragOver}
         onDrop={handleDrop}
@@ -55,7 +55,7 @@ const UploadBulkQuiz = ()=>{
     }
     
    
-   
+
     </>
   )
 };
