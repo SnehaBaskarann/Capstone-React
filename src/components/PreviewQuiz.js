@@ -3,6 +3,7 @@ import { Container, Row, Col, Button, Form, Card } from 'react-bootstrap';
 import { PencilSquare, TrashFill, Check2Square } from 'react-bootstrap-icons';
 import Navbar from '../Navbar';
 import jsonData from './data.json';
+import AdminNavbar from '../AdminNavbar';
 
 const QuizEditor = () => {
   const [questions, setQuestions] = useState([]);
@@ -58,8 +59,8 @@ const QuizEditor = () => {
 
   return (
     <div>
-      {/* <Navbar/> */}
-      <Container>
+      <AdminNavbar/>
+      <Container style={{ width: '70%', marginBottom: '10px' }}>
         {questions.map((question, index) => (
           <Card className="mb-3" key={question.id}>
             <Card.Body>
