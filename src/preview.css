@@ -1,0 +1,42 @@
+.previewcontainer
+{
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  margin-top: 8%;
+}
+
+
+.icon:hover {
+    transform: scale(1.2);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  #iconSave,#iconEdit,#iconDelete{
+    cursor: pointer;
+  }
+
+  #iconSave,#iconEdit{
+    position: absolute;
+    top: 70px;
+    right: 50px;
+  }
+  
+  #iconDelete
+  {
+    position: absolute;
+    top: 120px;
+    right: 50px;
+  }
+
+
+  .card
+  {
+    /* width: 100%; */
+    /* width: calc(100% - 20px); */
+  }
+  
+  .form-control
+  {
+    width: 100%;
+  }
