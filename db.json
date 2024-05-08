@@ -1,0 +1,28 @@
+{
+  "quizzes": [
+    {
+      "id": "4a38",
+      "quizTitle": "Dotnet",
+      "duration": "60",
+      "grade": "8"
+    },
+    {
+      "id": "b56b",
+      "quizTitle": "Devops",
+      "duration": "60",
+      "grade": "8"
+    },
+    {
+      "quizTitle": "Dotnet",
+      "duration": "60",
+      "grade": "8",
+      "id": "0719"
+    },
+    {
+      "id": "da12",
+      "quizTitle": "Javascript",
+      "duration": "60",
+      "grade": "80"
+    }
+  ]
+}

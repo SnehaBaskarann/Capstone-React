@@ -7,8 +7,6 @@ import AdminNavbar from '../AdminNavbar';
  
 const UploadBulkQuiz = ()=>{
     const[files , setFiles]=useState(undefined);
-    
-    
     const inputref = useRef();
  
     const handleDragOver = (event)=>{
@@ -20,13 +18,11 @@ const UploadBulkQuiz = ()=>{
         setFiles(event.dataTransfer.files)
     };
 
-   
-
   return (
     <>
       <AdminNavbar />
-        
-        <h5 style={{marginTop:"-40%" , marginLeft:"42%"}}>Upload Question from device </h5>
+        <div id='uploadContent'>
+        <h5 style={{marginTop:"-40%" , marginLeft:"25%"}}>Upload Question from device </h5>
         <div id='dropzone'
         onDragOver={handleDragOver}
         onDrop={handleDrop}
@@ -37,12 +33,31 @@ const UploadBulkQuiz = ()=>{
             <input type='file' multiple onChange={(event)=>setFiles(event.target.files)} hidden ref={inputref}/>
             <button onClick={(e)=> {e.preventDefault();inputref.current.click()}}>Browse Files</button>
         </div>
-        <div style={{marginLeft:"15%",marginTop:"2%"}}>
+        <div style={{marginLeft:"25%",marginTop:"2%"}}>
             <h5>Supported File formats : .xlsx</h5>
+            <br/>
+               
+     {files ?<>
+            <div >
+              <h6>Selected File </h6>
+            {Array.from(files).map((file,idx)=><p key={idx}>{file.name}</p>)}        
+        </div></>:<>
+        </>
+        
+    }
             </div>
-            <div style={{marginLeft:"75%",marginTop:"2%"}}>
-            <h6>Download <Link style={{textDecoration:"none"}}>file</Link> formats</h6></div>
-   
+            {/* <div style={{marginLeft:"65%",marginTop:"1px"}}>
+            <h6>Download <Link style={{textDecoration:"none"}}>file</Link> formats</h6></div> */}
+            <br/>
+            <div class="position-absolute start-50 translate-middle">
+            <button
+            className="btn btn-secondary mt-3 "
+            type="submit"
+          >
+            Upload
+          </button>
+          </div>
+{/*          
      {files ?<>
             <div >
         <ul>
@@ -52,13 +67,17 @@ const UploadBulkQuiz = ()=>{
         </div></>:<>
         </>
         
-    }
+    } */}
     
-   
-   
+   </div>
     </>
   )
 };
  
 export default UploadBulkQuiz
+
+
+
+
+
  

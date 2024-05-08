@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar';
-// import Home from '../Home';
+import Home from '../Home';
 
 const QuizManager = () => {
   const [quizTitle, setQuizTitle] = useState('');
@@ -85,9 +85,8 @@ const QuizManager = () => {
 
   return (
     <div>
-      {/* <Home /> */}
-      <Navbar/>
-      <div className="quiz-manager container mt-5">
+      <Home/>
+      <div className="quiz-manager container mt-5" style={{ width: '60%', marginBottom: '10px' }}>
         <form onSubmit={handleSubmit}>
           {/* <div className="mb-3">
             <label htmlFor="noOfQuestions" className="form-label">No of Questions</label>
