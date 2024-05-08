@@ -46,20 +46,20 @@ const QuizEditor = () => {
     validateQuestions(updatedQuestions);
   };
 
-  const handleDeleteQuestion = (questionId) => {
-    const updatedQuestions = questions.filter(question => question.id !== questionId);
-    setQuestions(updatedQuestions);
-    //updateData(updatedQuestions);
-    validateQuestions(updatedQuestions);
-  };
-
   // const handleDeleteQuestion = (questionId) => {
-  //   axios.delete(`http://localhost:3001/questions/$questionId`)
   //   const updatedQuestions = questions.filter(question => question.id !== questionId);
   //   setQuestions(updatedQuestions);
   //   //updateData(updatedQuestions);
   //   validateQuestions(updatedQuestions);
   // };
+
+  const handleDeleteQuestion = (questionId) => {
+    axios.delete(`http://localhost:3001/questions/$questionId`)
+    const updatedQuestions = questions.filter(question => question.id !== questionId);
+    setQuestions(updatedQuestions);
+    //updateData(updatedQuestions);
+    validateQuestions(updatedQuestions);
+  };
 
   const handleEditCorrectAnswer = (questionId, newAnswer) => {
     const updatedQuestions = questions.map(question => 
