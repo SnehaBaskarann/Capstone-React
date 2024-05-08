@@ -6,13 +6,16 @@
 
 .top-nav {
     display: flex;
-    /* justify-content: flex-end; */
     align-items: center;
     background-color: #23275c;
     color: #fff;
     height: 4rem;
-    width: 103rem;
+    /* width: 103rem; */
+    width: 100%;
     position: fixed;
+    overflow: hidden;
+    top: 0;
+    z-index: 1000;
 }
 
 .top-nav img {
@@ -114,14 +117,13 @@
     flex: 1;
     padding: 20px;
     margin-left: 70px;
-    /* Ensure main content doesn't overlap sidebar */
+    margin-top: 4rem;
     transition: margin-left 0.3s ease;
-    /* Animate margin-left change */
+
 }
 
 .side-nav.open+.main-content {
     margin-left: 200px;
-    /* Adjusted for expanded sidebar width */
 }
 
 
