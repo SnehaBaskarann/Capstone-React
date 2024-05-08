@@ -28,7 +28,6 @@ const QuizEditor = () => {
       question.id === questionId ? { ...question, text: newText } : question
     );
     setQuestions(updatedQuestions);
-    //updateData(updatedQuestions);
     validateQuestions(updatedQuestions);
   };
 
@@ -42,24 +41,24 @@ const QuizEditor = () => {
       } : question
     );
     setQuestions(updatedQuestions);
-    // updateData(updatedQuestions);
     validateQuestions(updatedQuestions);
   };
 
-  // const handleDeleteQuestion = (questionId) => {
-  //   const updatedQuestions = questions.filter(question => question.id !== questionId);
-  //   setQuestions(updatedQuestions);
-  //   //updateData(updatedQuestions);
-  //   validateQuestions(updatedQuestions);
-  // };
+ 
 
   const handleDeleteQuestion = (questionId) => {
-    axios.delete(`http://localhost:3001/questions/$questionId`)
-    const updatedQuestions = questions.filter(question => question.id !== questionId);
-    setQuestions(updatedQuestions);
-    //updateData(updatedQuestions);
-    validateQuestions(updatedQuestions);
+    axios.delete(`http://localhost:3001/questions/${questionId}`)
+    .then(response => {
+      console.log('Question deleted successfully:',response.data);
+      const updatedQuestions = questions.filter(question => question.id !== questionId);
+      setQuestions(updatedQuestions);
+    })
+    .catch(error => {
+      console.error('Error deleting question:',error);
+    });
+   
   };
+
 
   const handleEditCorrectAnswer = (questionId, newAnswer) => {
     const updatedQuestions = questions.map(question => 
@@ -69,59 +68,29 @@ const QuizEditor = () => {
     validateQuestions(updatedQuestions);
   };
 
-  // const handleToggleEdit = (questionId) => {
-  //   const updatedQuestions = questions.map(question => 
-  //     question.id === questionId ? { ...question, isEditing: !question.isEditing } : question
-  //   );
-  //   setQuestions(updatedQuestions);
-  // };
-
-  
+ 
   const handleSaveChanges = () => {
-    const updatedData = { ...jsonData };
     questions.forEach(modifiedQuestion => {
-      // Find the index of the modified question in the existing JSON data
-      const existingIndex = updatedData.questions.findIndex(question => question.id === modifiedQuestion.id);
-      if (existingIndex !== -1) {
-        // Update the existing JSON data with the modified question
-        updatedData.questions[existingIndex] = modifiedQuestion;
-      }
+      axios.put(`http://localhost:3001/questions/${modifiedQuestion.id}`, modifiedQuestion)
+        .then(response => {
+          console.log('Question updated successfully:', response.data);
+        })
+        .catch(error => {
+          console.error('Error updating question:', error);
+        });
     });
-  
-    // Send the updated JSON data to the server
-    axios.post('http://localhost:3001/questions', updatedData)
-      .then(response => {
-        console.log('Data updated successfully:', response.data);
-      })
-      .catch(error => {
-        console.error('Error updating data:', error);
-      });
   };
-  
-
-  // const handleSaveChanges = () => {
-  //   axios.post('http://localhost:3001/questions', { questions: questions })
-  //     .then(response => {
-  //       console.log('Data updated successfully:', response.data);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error updating data:', error);
-  //     });
-  // };
-  
-
+ 
   const handleToggleEdit = (questionId) => {
     const updatedQuestions = questions.map(question =>
       question.id === questionId ? { ...question, isEditing: !question.isEditing } : question
     );
     setQuestions(updatedQuestions);
-    // Save changes when toggling edit mode
     handleSaveChanges();
   };
 
   const handleAddQuestion = () => {
-    const newQuestion = { 
-      id: questions.length + 1,
+    const newQuestion = {
       text: `Question ${questions.length + 1}`,
       options: [
         { id: 1, text: 'Option A' },
@@ -130,43 +99,18 @@ const QuizEditor = () => {
         { id: 4, text: 'Option D' }
       ],
       correctAnswer: 'Option A',
-      isEditing: true
+      isEditing: false
     };
     
-    // const updatedQuestions = [...questions, newQuestion];
-    // setQuestions(updatedQuestions);
-    //updateData(updatedQuestions);
-
     axios.post('http://localhost:3001/questions', newQuestion)
-    .then(response => {
-      console.log('Question added successfully:', response.data);
-      // Update state to include the new question
-      setQuestions([...questions, newQuestion]);
-    })
-    .catch(error => {
-      console.error('Error adding question:', error);
-    });
-
-    // axios.post('http://localhost:3001/questions', { questions: updatedQuestions })
-    // .then(response => {
-    //   console.log('Question added successfully:', response.data);
-    // })
-    // .catch(error => {
-    //   console.error('Error adding question:', error);
-    // });
-
-    // validateQuestions(updatedQuestions);
+      .then(response => {
+        console.log('Question added successfully:', response.data);
+        setQuestions([...questions, newQuestion]);
+      })
+      .catch(error => {
+        console.error('Error adding question:', error);
+      });
   };
-
-  // const updateData = (updatedQuestions) => {
-  //   axios.post('http://localhost:3001/questions', updatedQuestions)
-  //     .then(response => {
-  //       console.log('Data updated successfully:', response.data);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error updating data:', error);
-  //     });
-  // };
 
   const validateQuestions = (questions) => {
     const errors = {};
@@ -188,7 +132,6 @@ const QuizEditor = () => {
     <div className='previewcontainer'>
       <AdminNavbar/>
       <Container style={{ width: '70%', marginBottom: '10px', marginLeft: '17%' }}>
-      {/* {questions && questions.map((question, index) => ( */}
         {questions.map((question, index) => (
           <Card className="mb-3" key={question.id}>
             <Card.Body>
@@ -246,25 +189,6 @@ const QuizEditor = () => {
                   </Form.Group>
                 </Col>
               </Row>
-              {/* <div className="position-absolute top-0 end-0">
-                <br/>
-                <Row>
-                  <Col>
-                    {question.isEditing ? (
-                      <Check2Square size={35} color="green" onClick={() => handleToggleEdit(question.id)} className="mr-2" />
-                    ) : (
-                      <PencilSquare size={35} color="blue" onClick={() => handleToggleEdit(question.id)} className="mr-2" />
-                    )}
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <br/>
-                    <TrashFill size={35} color="red" onClick={() => handleDeleteQuestion(question.id)} />
-                  </Col>
-                </Row>
-              </div> */}
-
               <div className="position-absolute top-0 end-0">
                 <br />
                 <Row>
@@ -298,6 +222,382 @@ const QuizEditor = () => {
 };
 
 export default QuizEditor;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState, useEffect } from 'react';
+// import { Container, Row, Col, Button, Form, Card } from 'react-bootstrap';
+// import { PencilSquare, TrashFill, Check2Square } from 'react-bootstrap-icons';
+// import Navbar from '../Navbar';
+// import jsonData from './data.json';
+// import AdminNavbar from '../AdminNavbar';
+// import '../preview.css';
+// import axios from 'axios';
+
+// const QuizEditor = () => {
+//   const [questions, setQuestions] = useState([]);
+//   const [errors, setErrors] = useState({});
+
+ 
+//   useEffect(() => {
+//     axios.get('http://localhost:3001/questions')
+//     .then(response => {
+//     setQuestions(response.data);
+//     })
+//     .catch(error => {
+//     console.error('Error fetching data:', error);
+//     });
+//     }, []);
+
+
+//   const handleEditQuestion = (questionId, newText) => {
+//     const updatedQuestions = questions.map(question => 
+//       question.id === questionId ? { ...question, text: newText } : question
+//     );
+//     setQuestions(updatedQuestions);
+//     //updateData(updatedQuestions);
+//     validateQuestions(updatedQuestions);
+//   };
+
+//   const handleEditOption = (questionId, optionId, newText) => {
+//     const updatedQuestions = questions.map(question => 
+//       question.id === questionId ? { 
+//         ...question, 
+//         options: question.options.map(option => 
+//           option.id === optionId ? { ...option, text: newText } : option
+//         ) 
+//       } : question
+//     );
+//     setQuestions(updatedQuestions);
+//     // updateData(updatedQuestions);
+//     validateQuestions(updatedQuestions);
+//   };
+
+//   // const handleDeleteQuestion = (questionId) => {
+//   //   const updatedQuestions = questions.filter(question => question.id !== questionId);
+//   //   setQuestions(updatedQuestions);
+//   //   //updateData(updatedQuestions);
+//   //   validateQuestions(updatedQuestions);
+//   // };
+
+//   const handleDeleteQuestion = (questionId) => {
+//     axios.delete(`http://localhost:3001/questions/${questionId}`)
+//     .then(response => {
+//       console.log('Question deleted successfully:',response.data);
+//       const updatedQuestions = questions.filter(question => question.id !== questionId);
+//       setQuestions(updatedQuestions);
+//     })
+//     .catch(error => {
+//       console.error('Error deleting question:',error);
+//     });
+//     //updateData(updatedQuestions);
+//     // validateQuestions(updatedQuestions);
+//   };
+
+
+//   const handleEditCorrectAnswer = (questionId, newAnswer) => {
+//     const updatedQuestions = questions.map(question => 
+//       question.id === questionId ? { ...question, correctAnswer: newAnswer } : question
+//     );
+//     setQuestions(updatedQuestions);
+//     validateQuestions(updatedQuestions);
+//   };
+
+//   // const handleToggleEdit = (questionId) => {
+//   //   const updatedQuestions = questions.map(question => 
+//   //     question.id === questionId ? { ...question, isEditing: !question.isEditing } : question
+//   //   );
+//   //   setQuestions(updatedQuestions);
+//   // };
+
+  
+//   const handleSaveChanges = () => {
+//     const updatedData = { ...jsonData };
+//     questions.forEach(modifiedQuestion => {
+//       // Find the index of the modified question in the existing JSON data
+//       const existingIndex = updatedData.questions.findIndex(question => question.id === modifiedQuestion.id);
+//       if (existingIndex !== -1) {
+//         // Update the existing JSON data with the modified question
+//         updatedData.questions[existingIndex] = modifiedQuestion;
+//       }
+//     });
+  
+//     // Send the updated JSON data to the server
+//     axios.post('http://localhost:3001/questions', updatedData)
+//       .then(response => {
+//         console.log('Data updated successfully:', response.data);
+//       })
+//       .catch(error => {
+//         console.error('Error updating data:', error);
+//       });
+//   };
+  
+
+//   // const handleSaveChanges = () => {
+//   //   axios.post('http://localhost:3001/questions', { questions: questions })
+//   //     .then(response => {
+//   //       console.log('Data updated successfully:', response.data);
+//   //     })
+//   //     .catch(error => {
+//   //       console.error('Error updating data:', error);
+//   //     });
+//   // };
+  
+
+//   const handleToggleEdit = (questionId) => {
+//     const updatedQuestions = questions.map(question =>
+//       question.id === questionId ? { ...question, isEditing: !question.isEditing } : question
+//     );
+//     setQuestions(updatedQuestions);
+//     // Save changes when toggling edit mode
+//     handleSaveChanges();
+//   };
+
+
+//   const handleAddQuestion = () => {
+//     // const newQuestionId = generateUniqueId(); 
+//     const newQuestion = {
+//       // id: newQuestionId,
+//       text: `Question ${questions.length + 1}`,
+//       options: [
+//         { id: 1, text: 'Option A' },
+//         { id: 2, text: 'Option B' },
+//         { id: 3, text: 'Option C' },
+//         { id: 4, text: 'Option D' }
+//       ],
+//       correctAnswer: 'Option A',
+//       isEditing: true
+//     };
+    
+//     axios.post('http://localhost:3001/questions', newQuestion)
+//       .then(response => {
+//         console.log('Question added successfully:', response.data);
+//         // Update state to include the new question
+//         setQuestions([...questions, newQuestion]);
+//       })
+//       .catch(error => {
+//         console.error('Error adding question:', error);
+//       });
+//   };
+  
+
+//   // const handleAddQuestion = () => {
+//   //   const newQuestion = { 
+//   //     // id: questions.length + 1,
+//   //     text: `Question ${questions.length + 1}`,
+//   //     options: [
+//   //       { id: 1, text: 'Option A' },
+//   //       { id: 2, text: 'Option B' },
+//   //       { id: 3, text: 'Option C' },
+//   //       { id: 4, text: 'Option D' }
+//   //     ],
+//   //     correctAnswer: 'Option A',
+//   //     isEditing: true
+//   //   };
+    
+//   //   // const updatedQuestions = [...questions, newQuestion];
+//   //   // setQuestions(updatedQuestions);
+//   //   //updateData(updatedQuestions);
+
+//   //   axios.post('http://localhost:3001/questions', newQuestion)
+//   //   .then(response => {
+//   //     console.log('Question added successfully:', response.data);
+//   //     // Update state to include the new question
+//   //     setQuestions([...questions, newQuestion]);
+//   //   })
+//   //   .catch(error => {
+//   //     console.error('Error adding question:', error);
+//   //   });
+
+//   //   // axios.post('http://localhost:3001/questions', { questions: updatedQuestions })
+//   //   // .then(response => {
+//   //   //   console.log('Question added successfully:', response.data);
+//   //   // })
+//   //   // .catch(error => {
+//   //   //   console.error('Error adding question:', error);
+//   //   // });
+
+//   //   // validateQuestions(updatedQuestions);
+//   // };
+
+//   // const updateData = (updatedQuestions) => {
+//   //   axios.post('http://localhost:3001/questions', updatedQuestions)
+//   //     .then(response => {
+//   //       console.log('Data updated successfully:', response.data);
+//   //     })
+//   //     .catch(error => {
+//   //       console.error('Error updating data:', error);
+//   //     });
+//   // };
+
+//   const validateQuestions = (questions) => {
+//     const errors = {};
+//     questions.forEach((question, index) => {
+//       if (!question.text.trim()) {
+//         errors[`question-${question.id}`] = `Question ${index + 1} cannot be empty.`;
+//       }
+//       if (question.options.some(option => !option.text.trim())) {
+//         errors[`options-${question.id}`] = `Options for Question ${index + 1} cannot be empty.`;
+//       }
+//       if (!question.correctAnswer.trim()) {
+//         errors[`correctAnswer-${question.id}`] = `Correct answer for Question ${index + 1} cannot be empty.`;
+//       }
+//     });
+//     setErrors(errors);
+//   };
+
+//   return (
+//     <div className='previewcontainer'>
+//       <AdminNavbar/>
+//       <Container style={{ width: '70%', marginBottom: '10px', marginLeft: '17%' }}>
+//       {/* {questions && questions.map((question, index) => ( */}
+//         {questions.map((question, index) => (
+//           <Card className="mb-3" key={question.id}>
+//             <Card.Body>
+//               <Form.Group controlId={`question-${question.id}`}>
+//                 <Form.Label>Question {index + 1}</Form.Label>
+//                 <Form.Control 
+//                   as="textarea" 
+//                   rows={2} 
+//                   value={question.text} 
+//                   style={{ width: '90%', marginBottom: '10px' }}
+//                   onChange={(e) => handleEditQuestion(question.id, e.target.value)} 
+//                   readOnly={!question.isEditing} 
+//                   isInvalid={!!errors[`question-${question.id}`]}
+//                 />
+//                 <Form.Control.Feedback type="invalid">
+//                   {errors[`question-${question.id}`]}
+//                 </Form.Control.Feedback>
+//               </Form.Group>
+//               <Row>
+//                 <Col>
+//                   <Form.Group controlId={`options-${question.id}`}>
+//                     <Form.Label>Options</Form.Label>
+//                     <Row>
+//                       {question.options.map((option, idx) => (
+//                         <Col xs={6} key={option.id}>
+//                           <Form.Control 
+//                             type="text" 
+//                             value={option.text} 
+//                             onChange={(e) => handleEditOption(question.id, option.id, e.target.value)} 
+//                             readOnly={!question.isEditing} 
+//                             placeholder={`Option ${String.fromCharCode(65 + idx)}`}
+//                             style={{ width: '80%', marginBottom: '10px' }} 
+//                             isInvalid={!!errors[`options-${question.id}`]}
+//                           />
+//                         </Col>
+//                       ))}
+//                     </Row>
+//                     <Form.Control.Feedback type="invalid">
+//                       {errors[`options-${question.id}`]}
+//                     </Form.Control.Feedback>
+//                     <Form.Group controlId={`correctAnswer-${question.id}`}>
+//                       <Form.Label>Correct Answer</Form.Label>
+//                       <Form.Control 
+//                         type="text" 
+//                         value={question.correctAnswer} 
+//                         style={{ width: '39%', marginBottom: '10px' }}
+//                         onChange={(e) => handleEditCorrectAnswer(question.id, e.target.value)} 
+//                         readOnly={!question.isEditing} 
+//                         isInvalid={!!errors[`correctAnswer-${question.id}`]}
+//                       />
+//                       <Form.Control.Feedback type="invalid">
+//                         {errors[`correctAnswer-${question.id}`]}
+//                       </Form.Control.Feedback>
+//                     </Form.Group>
+//                   </Form.Group>
+//                 </Col>
+//               </Row>
+//               {/* <div className="position-absolute top-0 end-0">
+//                 <br/>
+//                 <Row>
+//                   <Col>
+//                     {question.isEditing ? (
+//                       <Check2Square size={35} color="green" onClick={() => handleToggleEdit(question.id)} className="mr-2" />
+//                     ) : (
+//                       <PencilSquare size={35} color="blue" onClick={() => handleToggleEdit(question.id)} className="mr-2" />
+//                     )}
+//                   </Col>
+//                 </Row>
+//                 <Row>
+//                   <Col>
+//                     <br/>
+//                     <TrashFill size={35} color="red" onClick={() => handleDeleteQuestion(question.id)} />
+//                   </Col>
+//                 </Row>
+//               </div> */}
+
+//               <div className="position-absolute top-0 end-0">
+//                 <br />
+//                 <Row>
+//                   <Col>
+//                     {question.isEditing ? (
+//                       <Check2Square size={35} color="green" onClick={() => handleToggleEdit(question.id)} className="mr-2 icon" id='iconSave' />
+//                     ) : (
+//                       <PencilSquare size={35} color="blue" onClick={() => handleToggleEdit(question.id)} className="mr-2 icon" id='iconEdit' />
+//                     )}
+//                   </Col>
+//                 </Row>
+//                 <Row>
+//                   <Col>
+//                     <br />
+//                     <TrashFill size={35} color="red" onClick={() => handleDeleteQuestion(question.id)} className="icon" id='iconDelete' />
+//                   </Col>
+//                 </Row>
+//               </div>
+
+//             </Card.Body>
+//           </Card>
+//         ))}
+//         <Row className="mt-2 justify-content-end">
+//           <Col xs="auto">
+//             <Button onClick={handleAddQuestion}>Add Question</Button>
+//           </Col>
+//         </Row>
+//       </Container>
+//     </div>
+//   );
+// };
+
+// export default QuizEditor;
 
 
 
